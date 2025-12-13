@@ -9,10 +9,11 @@ import {
   Event,
   NavigationEnd,
 } from '@angular/router';
+import { Header } from './components/layout/header/header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

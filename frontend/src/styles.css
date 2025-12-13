@@ -1,6 +1,14 @@
 @import 'tailwindcss';
 @import 'preline/variants.css';
 
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+  }
+}
+
 @theme {
   --color-nord0: oklch(0.25 0.01 250);
   --color-nord1: oklch(0.3 0.01 250);
@@ -95,10 +103,8 @@
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 96rem;
 
-  --font-sans:
-    system-ui, -apple-system, 'Segoe UI', Roboto,
-    sans-serif;
-  --font-mono: 'Fira Code', 'Consolas', monospace;
+  --font-sans: 'Spectral', Georgia, 'Times New Roman', Times, serif; /* Default font for everything */
+  --font-mono: 'Fira Code', 'Consolas', 'Courier New', monospace;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
