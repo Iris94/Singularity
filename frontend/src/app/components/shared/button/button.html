@@ -1,0 +1,12 @@
+<button
+  [type]="type"
+  [disabled]="disabled"
+  [class]="
+    'btn ' +
+    'btn-' + variant + ' ' +
+    'btn-' + size +
+    (fullWidth ? ' btn-full' : '')
+  "
+>
+  {{ label }}
+</button>
