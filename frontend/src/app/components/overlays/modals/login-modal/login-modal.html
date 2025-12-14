@@ -1,0 +1,45 @@
+<app-modal-shell [modalId]="'sign-in-modal'" [title]="'Sign In'">
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+    <div class="space-y-4">
+      <app-form-input
+        [control]="testForm.controls.firstName"
+        label="First Name"
+        placeholder="Enter your first name"
+        inputId="first-name"
+        [icon]="UserIcon"
+      />
+      <app-form-input
+        [control]="testForm.controls.lastName"
+        label="Last Name"
+        placeholder="Enter your last name"
+        inputId="last-name"
+        [icon]="MailIcon"
+      />
+      <button
+        type="submit"
+        class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-primary text-white hover:opacity-90 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
+      >
+        Submit
+      </button>
+    </div>
+
+    @if (submittedValues) {
+      <div class="mt-6 p-4 bg-surface-hover border border-border rounded-lg">
+        <h4 class="text-sm font-semibold mb-2 text-text-primary">
+          Submitted Values:
+        </h4>
+        <p class="text-sm text-text-secondary">
+          <strong>First Name:</strong> {{ submittedValues.firstName }}
+        </p>
+        <p class="text-sm text-text-secondary">
+          <strong>Last Name:</strong> {{ submittedValues.lastName }}
+        </p>
+      </div>
+    }
+  </form>
+  <app-anchor
+    label="Register"
+    routerLink="/register"
+    [overlayTarget]="'#sign-in-modal'"
+  />
+</app-modal-shell>

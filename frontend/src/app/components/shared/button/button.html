@@ -1,12 +1,14 @@
 <button
-  [type]="type"
-  [disabled]="disabled"
+  (click)="onClick.emit()"
+  [type]="type()"
+  [disabled]="disabled()"
+  [attr.data-hs-overlay]="overlayTarget() || null"
   [class]="
     'btn ' +
-    'btn-' + variant + ' ' +
-    'btn-' + size +
-    (fullWidth ? ' btn-full' : '')
+    'btn-' + variant() + ' ' +
+    'btn-' + size() +
+    (fullWidth() ? ' btn-full' : '')
   "
 >
-  {{ label }}
+  {{ label() }}
 </button>

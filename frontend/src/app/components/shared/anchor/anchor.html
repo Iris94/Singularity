@@ -1,0 +1,17 @@
+@if (routerLink()) {
+  <a
+    [routerLink]="routerLink()"
+    [attr.data-hs-overlay]="overlayTarget() || null"
+    class="anchor-link"
+  >
+    {{ label() }}
+  </a>
+} @else {
+  <a
+    [href]="href()"
+    [attr.data-hs-overlay]="overlayTarget() || null"
+    class="anchor-link"
+  >
+    {{ label() }}
+  </a>
+}

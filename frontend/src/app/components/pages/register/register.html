@@ -1,1 +1,112 @@
-<p>register works!</p>
+<div class="container mx-auto py-12 px-4">
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-8 text-center">
+      <h1 class="text-3xl font-bold text-text-primary mb-2">
+        Just a quick registration, hold on...
+      </h1>
+      <p class="text-text-secondary">
+        We promise it won't take long! 🚀
+      </p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Required Fields -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-text-primary border-b border-border pb-2">
+          Required Information
+        </h2>
+
+        <app-form-input
+          [control]="registerForm.controls.username"
+          label="Username"
+          placeholder="Choose a username"
+          inputId="username"
+          [icon]="UserIcon"
+        />
+
+        <app-form-input
+          [control]="registerForm.controls.email"
+          label="Email"
+          placeholder="Enter your email"
+          inputId="email"
+          type="email"
+          [icon]="MailIcon"
+        />
+
+        <app-form-input
+          [control]="registerForm.controls.password"
+          label="Password"
+          placeholder="Create a password"
+          inputId="password"
+          type="password"
+          [icon]="LockIcon"
+        />
+      </div>
+
+      <!-- Optional Fields -->
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold text-text-primary border-b border-border pb-2">
+          Optional Information
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <app-form-input
+            [control]="registerForm.controls.firstName"
+            label="First Name"
+            placeholder="Enter your first name"
+            inputId="first-name"
+            [icon]="UserIcon"
+          />
+
+          <app-form-input
+            [control]="registerForm.controls.lastName"
+            label="Last Name"
+            placeholder="Enter your last name"
+            inputId="last-name"
+            [icon]="UserIcon"
+          />
+        </div>
+
+        <app-form-input
+          [control]="registerForm.controls.age"
+          label="Age"
+          placeholder="Enter your age"
+          inputId="age"
+          type="number"
+        />
+
+        <app-form-select
+          [control]="registerForm.controls.profession"
+          label="Profession"
+          placeholder="Select your profession"
+          inputId="profession"
+          [options]="professionOptions"
+        />
+
+        <app-form-select
+          [control]="registerForm.controls.gender"
+          label="Gender"
+          placeholder="Select your gender"
+          inputId="gender"
+          [options]="genderOptions"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full py-2.5 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-primary text-white hover:opacity-90 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
+      >
+        Create Account
+      </button>
+    </form>
+
+    @if (submittedValues) {
+      <div class="mt-6 p-4 bg-surface-hover border border-border rounded-lg">
+        <h4 class="text-sm font-semibold mb-2 text-text-primary">
+          Registration Data:
+        </h4>
+        <pre class="text-xs text-text-secondary overflow-auto">{{ submittedValues | json }}</pre>
+      </div>
+    }
+  </div>
+</div>

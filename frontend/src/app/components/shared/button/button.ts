@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, output, input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -7,11 +7,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './button.css',
 })
 export class Button {
-  @Input() variant: 'primary' | 'secondary' | 'success' | 'error' | 'warning' =
-    'primary';
-  @Input() size: 'sm' | 'md' | 'lg' = 'md';
-  @Input() disabled: boolean = false;
-  @Input() fullWidth: boolean = false;
-  @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  @Input() label: string = '';
+  variant = input<'primary' | 'secondary' | 'success' | 'error' | 'warning'>('primary');
+  size = input<'sm' | 'md' | 'lg'>('md');
+  disabled = input<boolean>(false);
+  fullWidth = input<boolean>(false);
+  type = input<'button' | 'submit' | 'reset'>('button');
+  label = input<string>('');
+  overlayTarget = input<string>('');
+
+  onClick = output();
 }

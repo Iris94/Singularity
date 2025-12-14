@@ -1,0 +1,7 @@
+@reference "../../../../styles.css";
+
+@layer components {
+  .anchor-link {
+    @apply text-primary underline hover:opacity-90;
+  }
+}

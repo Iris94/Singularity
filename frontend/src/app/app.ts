@@ -9,11 +9,12 @@ import {
   Event,
   NavigationEnd,
 } from '@angular/router';
-import { Header } from './components/layout/header/header';
+import { Header } from './components/layouts/header/header';
+import { LoginModal } from './components/overlays/modals/login-modal/login-modal';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header],
+  imports: [RouterOutlet, Header, LoginModal],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -23,6 +24,10 @@ export class App implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    // Inicijalizuj Preline JS odmah
+    setTimeout(() => window.HSStaticMethods.autoInit(), 100);
+
+    // Reinicijalizuj nakon navigacije
     this.router.events.subscribe(
       (event: Event) => {
         if (event instanceof NavigationEnd) {
