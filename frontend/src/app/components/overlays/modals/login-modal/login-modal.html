@@ -1,41 +1,45 @@
 <app-modal-shell [modalId]="'sign-in-modal'" [title]="'Sign In'">
-  <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="space-y-4">
+      @if (errorMessage) {
+        <div class="p-4 bg-error/10 border border-error rounded-lg text-error text-sm">
+          {{ errorMessage }}
+        </div>
+      }
+
       <app-form-input
-        [control]="testForm.controls.firstName"
-        label="First Name"
-        placeholder="Enter your first name"
-        inputId="first-name"
-        [icon]="UserIcon"
-      />
-      <app-form-input
-        [control]="testForm.controls.lastName"
-        label="Last Name"
-        placeholder="Enter your last name"
-        inputId="last-name"
+        [control]="loginForm.controls.usernameOrEmail"
+        label="Username or Email"
+        placeholder="Enter your username or email"
+        inputId="username-or-email"
         [icon]="MailIcon"
+        [error]="getUsernameOrEmailError()"
+        [required]="true"
       />
+
+      <app-form-input
+        [control]="loginForm.controls.password"
+        label="Password"
+        placeholder="Enter your password"
+        inputId="password"
+        type="password"
+        [icon]="LockIcon"
+        [error]="getPasswordError()"
+        [required]="true"
+      />
+
       <button
         type="submit"
-        class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-primary text-white hover:opacity-90 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
+        [disabled]="!loginForm.valid || isLoading"
+        class="w-full py-2.5 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-primary text-white hover:opacity-90 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
       >
-        Submit
+        @if (isLoading) {
+          <span>Signing in...</span>
+        } @else {
+          <span>Sign In</span>
+        }
       </button>
     </div>
-
-    @if (submittedValues) {
-      <div class="mt-6 p-4 bg-surface-hover border border-border rounded-lg">
-        <h4 class="text-sm font-semibold mb-2 text-text-primary">
-          Submitted Values:
-        </h4>
-        <p class="text-sm text-text-secondary">
-          <strong>First Name:</strong> {{ submittedValues.firstName }}
-        </p>
-        <p class="text-sm text-text-secondary">
-          <strong>Last Name:</strong> {{ submittedValues.lastName }}
-        </p>
-      </div>
-    }
   </form>
   <app-anchor
     label="Register"

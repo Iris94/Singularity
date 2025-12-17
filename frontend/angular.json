@@ -26,10 +26,12 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/toastify-js/src/toastify.css"
             ],
             "scripts": [
-              "node_modules/preline/dist/index.js"
+              "node_modules/preline/dist/index.js",
+              "node_modules/toastify-js/src/toastify.js"
             ]
           },
           "configurations": {

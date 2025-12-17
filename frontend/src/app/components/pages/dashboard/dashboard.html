@@ -5,8 +5,39 @@
   </div>
 
   <div class="bg-nord2 border border-border rounded-lg p-6">
-    <h2 class="text-text-primary text-xl font-semibold mb-2">Div 2</h2>
-    <p class="text-text-secondary">Left section (2 columns)</p>
+    <h2 class="text-text-primary text-xl font-semibold mb-4">Div 2</h2>
+    
+    <div class="space-y-4">
+      @if (successMessage) {
+        <div class="p-4 bg-success/10 border border-success rounded-lg text-success">
+          {{ successMessage }}
+        </div>
+      }
+
+      @if (errorMessage) {
+        <div class="p-4 bg-error/10 border border-error rounded-lg text-error">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <div class="flex gap-3">
+        <button
+          type="button"
+          (click)="triggerSuccess()"
+          class="py-2.5 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-success text-white hover:opacity-90 focus:outline-hidden"
+        >
+          Trigger Success
+        </button>
+
+        <button
+          type="button"
+          (click)="triggerError()"
+          class="py-2.5 px-4 inline-flex items-center justify-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-error text-white hover:opacity-90 focus:outline-hidden"
+        >
+          Trigger Error
+        </button>
+      </div>
+    </div>
   </div>
 
   <div class="bg-nord3 border border-border rounded-lg p-6">

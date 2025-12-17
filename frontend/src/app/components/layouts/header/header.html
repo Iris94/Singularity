@@ -88,7 +88,22 @@
         >
           Settings
         </a>
-        <app-button label="Sign in" [overlayTarget]="'#sign-in-modal'" />
+        @if (userService.isAuthenticated()) {
+          <div class="flex items-center gap-3">
+            <span class="font-medium text-text-primary">
+              {{ userService.currentUser()?.username }}
+            </span>
+            <button
+              type="button"
+              (click)="logout()"
+              class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-border bg-surface text-text-primary hover:bg-surface-hover focus:outline-hidden"
+            >
+              Logout
+            </button>
+          </div>
+        } @else {
+          <app-button label="Sign in" [overlayTarget]="'#sign-in-modal'" />
+        }
       </div>
     </div>
   </nav>

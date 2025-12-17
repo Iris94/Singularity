@@ -24,10 +24,8 @@ export class App implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // Inicijalizuj Preline JS odmah
     setTimeout(() => window.HSStaticMethods.autoInit(), 100);
 
-    // Reinicijalizuj nakon navigacije
     this.router.events.subscribe(
       (event: Event) => {
         if (event instanceof NavigationEnd) {

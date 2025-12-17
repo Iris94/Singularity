@@ -5,6 +5,9 @@
       class="block text-sm font-medium mb-2 text-text-primary"
     >
       {{ label() }}
+      @if (required()) {
+        <span [class]="error() ? 'text-md text-error' : (validation() ? 'text-md text-success' : 'text-md')">*</span>
+      }
     </label>
   }
   <div class="relative">
@@ -22,8 +25,22 @@
     <select
       [formControl]="control()"
       [id]="inputId() || control().value"
-      class="py-2.5 sm:py-3 block w-full border border-border rounded-lg text-sm bg-surface text-text-primary focus:border-primary focus:ring-primary disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+      [required]="required()"
+      aria-label="select"
+      [attr.aria-describedby]="error() ? inputId() + '-error-helper' : (validation() ? inputId() + '-validation-helper' : null)"
+      class="py-2.5 sm:py-3 block w-full border rounded-lg text-sm bg-surface text-text-primary focus:ring disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+      [class.border-border]="!error() && !validation()"
+      [class.border-error]="error()"
+      [class.border-success]="validation() && !error()"
+      [class.focus:border-primary]="!error() && !validation()"
+      [class.focus:ring-primary]="!error() && !validation()"
+      [class.focus:border-error]="error()"
+      [class.focus:ring-error]="error()"
+      [class.focus:border-success]="validation() && !error()"
+      [class.focus:ring-success]="validation() && !error()"
       [class.ps-11]="icon()"
+      [class.pe-11]="error() || validation()"
+      [class.pe-4]="!error() && !validation()"
       [class.px-4]="!icon()"
     >
       <option value="" disabled selected>{{ placeholder() }}</option>
@@ -31,5 +48,24 @@
         <option [value]="option.value">{{ option.label }}</option>
       }
     </select>
+    @if (error() || validation()) {
+      <div
+        class="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3"
+      >
+        <i-lucide
+          [img]="error() ? AlertCircleIcon : CheckCircleIcon"
+          [size]="16"
+          [class]="error() ? 'text-error' : 'text-success'"
+        ></i-lucide>
+      </div>
+    }
   </div>
+  @if (error() || validation()) {
+    <p
+      [id]="error() ? inputId() + '-error-helper' : inputId() + '-validation-helper'"
+      [class]="error() ? 'text-sm text-error mt-2' : 'text-sm text-success mt-2'"
+    >
+      {{ error() || validation() }}
+    </p>
+  }
 </div>

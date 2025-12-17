@@ -11,16 +11,13 @@ export class ModalShell {
   modalId = input<string>('app-modal');
 
   closeModal(event: Event) {
-    // Proveri da li je klik na backdrop (van content div-a)
     const target = event.target as HTMLElement;
     const currentTarget = event.currentTarget as HTMLElement;
     const contentDiv = currentTarget.querySelector(
       '.pointer-events-auto',
     ) as HTMLElement;
 
-    // Ako je klik na backdrop (van content div-a), zatvori modal
     if (target === currentTarget || (contentDiv && !contentDiv.contains(target))) {
-      // Spreči propagaciju eventa
       event.stopPropagation();
       
       const closeButton = document.querySelector(
